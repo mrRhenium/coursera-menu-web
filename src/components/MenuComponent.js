@@ -1,30 +1,15 @@
 import React, { Component } from "react";
-import Dishdetailed from "./DishdetailedComponent";
 
 class Menu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedDish: null,
-      id: null,
-    };
-  }
-
-  onDishSelect = (dish) => {
-    this.setState({ selectedDish: dish });
-    this.setState({ id: dish.id });
-  };
-
+  // rendering the MenuComponent
   render() {
     const menu = this.props.dishes.map((dish) => {
-      // console.log(typeof dish);
       return (
         <div className="col-12 col-md-5 m-1 border" key={dish.id}>
           <div
             className="card"
             onClick={() => {
-              this.onDishSelect(dish);
-              console.log("clicked " + dish.name);
+              this.props.onClick(dish.id);
             }}
           >
             <img className="card-img" src={dish.image} alt={dish.name} />
@@ -35,15 +20,9 @@ class Menu extends Component {
         </div>
       );
     });
-    // console.log(typeof menu);
     return (
       <div className="contanier">
         <div className="row">{menu}</div>
-        <Dishdetailed
-          selectedDish={this.state.selectedDish}
-          dish={this.props.dishes}
-          id={this.state.id}
-        />
       </div>
     );
   }

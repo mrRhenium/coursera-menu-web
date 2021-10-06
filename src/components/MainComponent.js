@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./MenuComponent";
-import Dishdetailed from "./DishdetailedComponent";
+import Dishdetail from "./DishdetailedComponent";
 import { DISHES } from "../shared/dishes";
 
 class Main extends Component {
@@ -31,8 +31,8 @@ class Main extends Component {
             this.onDishSelect(dishId);
           }}
         />
-        <Dishdetailed
-          selectedDish={
+        <Dishdetail
+          dish={
             this.state.dishes.filter(
               (dish) => dish.id === this.state.selectedDish
             )[0]

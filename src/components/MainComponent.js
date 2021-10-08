@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Menu from "./MenuComponent";
 import Dishdetail from "./DishdetailedComponent";
 import { DISHES } from "../shared/dishes";
+import Header from "./HeaderComponent";
+import Footer from "./FooterComponent";
 
 class Main extends Component {
   constructor(props) {
@@ -16,15 +18,8 @@ class Main extends Component {
   };
   render() {
     return (
-      <div className="container-fluid bg-dark border    border-danger w-100 h-auto">
-        {/* Navbar design from Bootstrap */}
-        <div className="row border border-danger">
-          <div className="navbar bg-info">
-            <div className="navbar-brand text-light">mr. Rhenium</div>
-          </div>
-        </div>
-        {/* Navbar ended */}
-
+      <div className="container-fluid border    border-danger w-100 h-auto">
+        <Header />
         <Menu
           dishes={this.state.dishes}
           onClick={(dishId) => {
@@ -38,6 +33,7 @@ class Main extends Component {
             )[0]
           }
         />
+        <Footer />
       </div>
     );
   }

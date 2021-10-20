@@ -17,7 +17,7 @@ class Header extends Component {
   render() {
     return (
       <>
-        <div className="row border border-danger mx-auto">
+        <div className="row mx-auto">
           <div className="navbar bg-info navbar-expand-md">
             <div className="container-fluid">
               <a className="navbar-brand text-dark mr-auto" href="#">

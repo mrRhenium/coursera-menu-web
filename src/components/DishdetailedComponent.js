@@ -64,13 +64,13 @@ const Dishdetail = (props) => {
             <hr />
           </div>
         </div>
-      </div>
-      <div className="row mt-2">
-        <div className="col-12 col-md-5 m-1">
-          <RenderDish dish={props.dish} />
-        </div>
-        <div className="col-12 col-md-5 m-1">
-          <RenderComment comments={props.comments} />
+        <div className="row mt-2">
+          <div className="col-12 col-md-5 m-1">
+            <RenderDish dish={props.dish} />
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            <RenderComment comments={props.comments} />
+          </div>
         </div>
       </div>
     </>

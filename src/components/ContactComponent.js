@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Contact(props) {
   return (
-    <div className="container border border-danger">
+    <div className="container">
       <div className="row">
         <div className="breadcrumb">
           <div className="breadcrumb-item">

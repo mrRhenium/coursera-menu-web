@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function RenderDish({ dish }) {
   // print the selected dish
@@ -17,16 +18,15 @@ function RenderDish({ dish }) {
   }
 }
 
-function RenderComment({ dish }) {
-  if (dish != null) {
-    const comment = dish.comments.map((e) => {
+function RenderComment({ comments }) {
+  if (comments != null) {
+    const comment = comments.map((e) => {
       return (
         <div key={e.id}>
           <div className=" card-text text-danger">
             {e.id + 1 + ". " + e.comment}
           </div>
           <div className="card-link  mb-2">
-            {/* -- {e.author} , {e.date.slice(0, 9)} */}
             -- {e.author}{" "}
             {new Intl.DateTimeFormat("en-US", {
               year: "numeric",
@@ -50,15 +50,30 @@ function RenderComment({ dish }) {
 
 const Dishdetail = (props) => {
   return (
-    <div className="row mt-2">
-      <div className="col-12 col-md-5 m-1 border">
-        <RenderDish dish={props.dish} />
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="breadcrumb">
+            <div className="breadcrumb-item">
+              <Link to="/menu">Menu</Link>
+            </div>
+            <div className="breadcrumb-item active">{props.dish.name}</div>
+          </div>
+          <div className="col-12">
+            <h3>{props.dish.name}</h3>
+            <hr />
+          </div>
+        </div>
       </div>
-      <div className="col-12 col-md-5 m-1 border">
-        {/* there is my custom changes in the code */}
-        <RenderComment dish={props.dish} />
+      <div className="row mt-2">
+        <div className="col-12 col-md-5 m-1">
+          <RenderDish dish={props.dish} />
+        </div>
+        <div className="col-12 col-md-5 m-1">
+          <RenderComment comments={props.comments} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

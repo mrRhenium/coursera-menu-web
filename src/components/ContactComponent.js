@@ -1,8 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Contact(props) {
   return (
-    <div className="container">
+    <div className="container border border-danger">
+      <div className="row">
+        <div className="breadcrumb">
+          <div className="breadcrumb-item">
+            <Link to="/home">Home</Link>
+          </div>
+          <div className="breadcrumb-item active">Contact Us</div>
+        </div>
+        <div className="col-12">
+          <h3>Contact Us</h3>
+          <hr />
+        </div>
+      </div>
+
       <div className="row row-content">
         <div className="col-12">
           <h3>Location Information</h3>

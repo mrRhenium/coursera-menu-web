@@ -28,7 +28,6 @@ class Contact extends Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
     this.setState({
       [name]: value,
     });
@@ -36,9 +35,7 @@ class Contact extends Component {
 
   handleSubmit(event) {
     console.log("Current State is " + JSON.stringify(this.state));
-
     alert("Current State is " + JSON.stringify(this.state));
-
     event.preventDefault();
   }
 
@@ -78,7 +75,7 @@ class Contact extends Component {
 
     if (
       this.state.touched.email &&
-      email.split("").filter((x) => x == "@").length != 1
+      email.split("").filter((x) => x === "@").length !== 1
     ) {
       errors.email = "Email should contain a @ ";
     }
@@ -98,25 +95,25 @@ class Contact extends Component {
 
     let class_firstname;
     if (this.state.touched.firstname) {
-      if (errors.firstname != "") class_firstname = "is-invalid";
+      if (errors.firstname !== "") class_firstname = "is-invalid";
       else class_firstname = "is-valid";
     }
 
     let class_lastname;
     if (this.state.touched.lastname) {
-      if (errors.lastname != "") class_lastname = "is-invalid";
+      if (errors.lastname !== "") class_lastname = "is-invalid";
       else class_lastname = "is-valid";
     }
 
     let class_telnum;
     if (this.state.touched.telnum) {
-      if (errors.telnum != "") class_telnum = "is-invalid";
+      if (errors.telnum !== "") class_telnum = "is-invalid";
       else class_telnum = "is-valid";
     }
 
     let class_email;
     if (this.state.touched.email) {
-      if (errors.email != "") class_email = "is-invalid";
+      if (errors.email !== "") class_email = "is-invalid";
       else class_email = "is-valid";
     }
 
@@ -170,7 +167,11 @@ class Contact extends Component {
               >
                 <i className="fa fa-phone"></i> Call
               </a>
-              <a role="button" className="btn btn-info">
+              <a
+                href="https://skype.com"
+                role="button"
+                className="btn btn-info"
+              >
                 <i className="fa fa-skype"></i> Skype
               </a>
               <a
@@ -206,6 +207,7 @@ class Contact extends Component {
                     value={this.state.firstname}
                     onBlur={this.handleBlur("firstname")}
                     onChange={this.handleInputChange}
+                    required
                   />
                   <div className="invalid-feedback">{errors.firstname}</div>
                 </div>
@@ -224,6 +226,7 @@ class Contact extends Component {
                     value={this.state.lastname}
                     onBlur={this.handleBlur("lastname")}
                     onChange={this.handleInputChange}
+                    required
                   />
                   <div className="invalid-feedback">{errors.lastname}</div>
                 </div>
@@ -242,6 +245,7 @@ class Contact extends Component {
                     value={this.state.telnum}
                     onBlur={this.handleBlur("telnum")}
                     onChange={this.handleInputChange}
+                    required
                   />
                   <div className="invalid-feedback">{errors.telnum}</div>
                 </div>
@@ -260,6 +264,7 @@ class Contact extends Component {
                     value={this.state.email}
                     onBlur={this.handleBlur("email")}
                     onChange={this.handleInputChange}
+                    required
                   />
                   <div className="invalid-feedback">{errors.email}</div>
                 </div>
@@ -275,6 +280,7 @@ class Contact extends Component {
                         className="form-check-input"
                         checked={this.state.agree}
                         onChange={this.handleInputChange}
+                        required
                       />
                       <strong>
                         <label htmlFor="agree">May we contact you ? </label>
@@ -305,6 +311,7 @@ class Contact extends Component {
                     rows="5"
                     value={this.state.message}
                     onChange={this.handleInputChange}
+                    required
                   ></textarea>
                 </div>
               </div>

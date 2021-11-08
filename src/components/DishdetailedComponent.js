@@ -1,5 +1,119 @@
-import React from "react";
+import React, { Component } from "react";
+import { Control, Errors, LocalForm } from "react-redux-form";
 import { Link } from "react-router-dom";
+
+const required = (val) => val && val.length;
+const minlength = (len) => (val) => val && val.length >= len;
+const maxlength = (len) => (val) => !val || val.length <= len;
+
+class CommentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.submitComment = this.submitComment.bind(this);
+  }
+  submitComment(values) {
+    console.log("Current State is " + JSON.stringify(values));
+    alert("Current State is " + JSON.stringify(values));
+  }
+  render() {
+    return (
+      <>
+        <div className="col-md-12">
+          <div className="modal" id="commentForm">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h4 className="modal-title">Submit Comment</h4>
+                  <button
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <LocalForm onSubmit={(values) => this.submitComment(values)}>
+                    <div className="form-group my-4">
+                      <label htmlFor="rating">Rating</label>
+                      <Control.select
+                        className="form-control"
+                        model=".rating"
+                        id="rating"
+                        name="rating"
+                        validators={{
+                          required,
+                        }}
+                      >
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                      </Control.select>
+                      <Errors
+                        className="text-danger"
+                        model=".rating"
+                        show="touched"
+                        messages={{
+                          required: "Required",
+                        }}
+                      />
+                    </div>
+                    <div className="form-group my-4">
+                      <label htmlFor="author">Author</label>
+                      <Control.text
+                        className="form-control"
+                        model=".author"
+                        id="author"
+                        name="author"
+                        placeholder="author"
+                        validators={{
+                          required,
+                          minlength: minlength(3),
+                          maxlength: maxlength(15),
+                        }}
+                      />
+                      <Errors
+                        className="text-danger"
+                        model=".author"
+                        show="touched"
+                        messages={{
+                          required: "Required ",
+                          minlength: " Must be greater than 2 characters",
+                          maxlength: "Must be 15 charcters or less",
+                        }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="message">Message</label>
+                      <Control.textarea
+                        className="form-control"
+                        model=".message"
+                        id="message"
+                        name="message"
+                        cols="6"
+                        rows="6"
+                      />
+                    </div>
+                    <div className="form-group my-4">
+                      <button className="btn btn-primary">Submit</button>
+                    </div>
+                  </LocalForm>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            className="btn border border-dark bg-light"
+            data-bs-toggle="modal"
+            data-bs-target="#commentForm"
+          >
+            <i className="fa fa-pencil px-2"></i>
+            <span className="text-dark lead">Submit Comment</span>
+          </button>
+        </div>
+      </>
+    );
+  }
+}
 
 function RenderDish({ dish }) {
   // print the selected dish
@@ -38,10 +152,17 @@ function RenderComment({ comments }) {
       );
     });
     return (
-      <div className="card my-2 d-flex align-items-center">
-        <h1 className="card-title ">Comments</h1>
-        <div className="card-body">{comment}</div>
-      </div>
+      <>
+        <div className="row">
+          <div className="card my-2 d-flex align-items-center">
+            <h1 className="card-title ">Comments</h1>
+            <div className="card-body">{comment}</div>
+          </div>
+        </div>
+        <div className="row mt-2">
+          <CommentForm />
+        </div>
+      </>
     );
   } else {
     return <div></div>;

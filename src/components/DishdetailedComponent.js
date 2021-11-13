@@ -12,8 +12,13 @@ class CommentForm extends Component {
     this.submitComment = this.submitComment.bind(this);
   }
   submitComment(values) {
-    console.log("Current State is " + JSON.stringify(values));
-    alert("Current State is " + JSON.stringify(values));
+    // alert("this is your comment : " + JSON.stringify(values));
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
   render() {
     return (
@@ -38,9 +43,6 @@ class CommentForm extends Component {
                         model=".rating"
                         id="rating"
                         name="rating"
-                        validators={{
-                          required,
-                        }}
                       >
                         <option>5</option>
                         <option>4</option>
@@ -48,14 +50,6 @@ class CommentForm extends Component {
                         <option>2</option>
                         <option>1</option>
                       </Control.select>
-                      <Errors
-                        className="text-danger"
-                        model=".rating"
-                        show="touched"
-                        messages={{
-                          required: "Required",
-                        }}
-                      />
                     </div>
                     <div className="form-group my-4">
                       <label htmlFor="author">Author</label>
@@ -83,18 +77,23 @@ class CommentForm extends Component {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="message">Message</label>
+                      <label htmlFor="comment">Message</label>
                       <Control.textarea
                         className="form-control"
-                        model=".message"
-                        id="message"
-                        name="message"
+                        model=".comment"
+                        id="comment"
+                        name="comment"
                         cols="6"
                         rows="6"
                       />
                     </div>
                     <div className="form-group my-4">
-                      <button className="btn btn-primary">Submit</button>
+                      <button
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Submit
+                      </button>
                     </div>
                   </LocalForm>
                 </div>
@@ -132,7 +131,7 @@ function RenderDish({ dish }) {
   }
 }
 
-function RenderComment({ comments }) {
+function RenderComment({ comments, dishId, addComment }) {
   if (comments != null) {
     const comment = comments.map((e) => {
       return (
@@ -160,7 +159,7 @@ function RenderComment({ comments }) {
           </div>
         </div>
         <div className="row mt-2">
-          <CommentForm />
+          <CommentForm dishId={dishId} addComment={addComment} />
         </div>
       </>
     );
@@ -190,7 +189,11 @@ const Dishdetail = (props) => {
             <RenderDish dish={props.dish} />
           </div>
           <div className="col-12 col-md-5 m-1">
-            <RenderComment comments={props.comments} />
+            <RenderComment
+              comments={props.comments}
+              dishId={props.dish.id}
+              addComment={props.addComment}
+            />
           </div>
         </div>
       </div>

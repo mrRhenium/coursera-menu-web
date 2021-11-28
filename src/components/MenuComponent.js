@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderMenuItem({ dish }) {
   return (
     <div className="card">
       <Link to={`menu/${dish.id}`}>
-        <img className="card-img" src={dish.image} alt={dish.name} />
+        <img className="card-img" src={baseUrl + dish.image} alt={dish.name} />
         <div className="card-body card-img-overlay">
           <h1 className="card-title">{dish.name}</h1>
         </div>

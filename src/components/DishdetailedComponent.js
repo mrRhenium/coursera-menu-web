@@ -15,7 +15,7 @@ class CommentForm extends Component {
   }
   submitComment(values) {
     // alert("this is your comment : " + JSON.stringify(values));
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -128,7 +128,7 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComment({ comments, dishId, addComment }) {
+function RenderComment({ comments, dishId, postComment }) {
   if (comments != null) {
     const comment = comments.map((e) => {
       return (
@@ -156,7 +156,7 @@ function RenderComment({ comments, dishId, addComment }) {
           </div>
         </div>
         <div className="row mt-2">
-          <CommentForm dishId={dishId} addComment={addComment} />
+          <CommentForm dishId={dishId} postComment={postComment} />
         </div>
       </>
     );
@@ -206,7 +206,7 @@ const Dishdetail = (props) => {
               <RenderComment
                 comments={props.comments}
                 dishId={props.dish.id}
-                addComment={props.addComment}
+                postComment={props.postComment}
               />
             </div>
           </div>

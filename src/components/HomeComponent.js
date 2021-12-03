@@ -1,6 +1,7 @@
 import React from "react";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
+// import {} from "react-animation-components";
 
 const RenderCard = ({ item, isLoading, errMess }) => {
   if (isLoading) {

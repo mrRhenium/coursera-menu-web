@@ -14,7 +14,6 @@ class CommentForm extends Component {
     this.submitComment = this.submitComment.bind(this);
   }
   submitComment(values) {
-    // alert("this is your comment : " + JSON.stringify(values));
     this.props.postComment(
       this.props.dishId,
       values.rating,

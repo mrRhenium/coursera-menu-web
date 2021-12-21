@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Control, Errors, Form, actions } from "react-redux-form";
+import { Control, Errors, Form } from "react-redux-form";
 
 const required = (val) => val && val.length;
 const minlength = (len) => (val) => val && val.length >= len;
@@ -16,9 +16,18 @@ class Contact extends Component {
 
   handleSubmit(values) {
     console.log("Current State is " + JSON.stringify(values));
-    alert("Current State is " + JSON.stringify(values));
+    this.props.postFeedback(
+      values.firstname,
+      values.lastname,
+      values.telnum,
+      values.email,
+      values.agree,
+      values.contactType,
+      values.message
+    );
+    alert("Feedback :" + this.props.feedback);
+    // values.preventDefault();
     this.props.resetFeedbackForm();
-    // event.preventDefault();
   }
 
   render() {

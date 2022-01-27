@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/coursera-menu-web/static/css/main.64d499c7.chunk.css",
-    "main.js": "/coursera-menu-web/static/js/main.d08996f6.chunk.js",
-    "main.js.map": "/coursera-menu-web/static/js/main.d08996f6.chunk.js.map",
+    "main.js": "/coursera-menu-web/static/js/main.2a1bf0f2.chunk.js",
+    "main.js.map": "/coursera-menu-web/static/js/main.2a1bf0f2.chunk.js.map",
     "runtime-main.js": "/coursera-menu-web/static/js/runtime-main.cea50b61.js",
     "runtime-main.js.map": "/coursera-menu-web/static/js/runtime-main.cea50b61.js.map",
     "static/js/2.92ad5fa6.chunk.js": "/coursera-menu-web/static/js/2.92ad5fa6.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.cea50b61.js",
     "static/js/2.92ad5fa6.chunk.js",
     "static/css/main.64d499c7.chunk.css",
-    "static/js/main.d08996f6.chunk.js"
+    "static/js/main.2a1bf0f2.chunk.js"
   ]
 }
